@@ -1,0 +1,23 @@
+version: "1"
+
+services:
+  server:
+    image: "backdiplom"
+
+    ports:
+      - "8090:8090"
+    depends_on:
+      - bd
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/sys
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=mysql
+    container_name: "server"
+
+  bd:
+    image: "mysql"
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql
+    ports:
+      - "3306:3306"
+    container_name: "db"
